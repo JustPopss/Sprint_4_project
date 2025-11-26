@@ -17,26 +17,25 @@ public class OrderPage {
     //Локаторы страницы заказа
 
     //Поле имя
-    private By nameField = By.xpath(".//*[@class='Input_Input__1iN_Z Input_Responsible__1jDKN' and @placeholder='* Имя']");
+    private final By nameField = By.xpath(".//*[@class='Input_Input__1iN_Z Input_Responsible__1jDKN' and @placeholder='* Имя']");
 
     //Поле фамилия
-    private By lastNameField = By.xpath(".//input[@class='Input_Input__1iN_Z Input_Responsible__1jDKN' and @placeholder='* Фамилия']");
+    private final By lastNameField = By.xpath(".//input[@class='Input_Input__1iN_Z Input_Responsible__1jDKN' and @placeholder='* Фамилия']");
 
     //Поле адрес
-    private By addressField = By.xpath(".//input[@class='Input_Input__1iN_Z Input_Responsible__1jDKN' and @placeholder='* Адрес: куда привезти заказ']");
+    private final By addressField = By.xpath(".//input[@class='Input_Input__1iN_Z Input_Responsible__1jDKN' and @placeholder='* Адрес: куда привезти заказ']");
 
     //Поле станция
-    private By metroStation = By.className("select-search__input");
+    private final By metroStation = By.className("select-search__input");
 
     //Выбор станции Митино
-    private By mitinoStation = By.xpath(".//button[@value='46']");
+    private final By mitinoStation = By.xpath(".//button[@value='46']");
 
     //Поле телефон
-    private By phoneField = By.xpath(".//input[@class='Input_Input__1iN_Z Input_Responsible__1jDKN' and @placeholder='* Телефон: на него позвонит курьер']");
+    private final By phoneField = By.xpath(".//input[@class='Input_Input__1iN_Z Input_Responsible__1jDKN' and @placeholder='* Телефон: на него позвонит курьер']");
 
     //Кнопка Далее
-    private By nextButton1 = By.cssSelector(".Button_Button__ra12g.Button_Middle__1CSJM");
-
+    private final By nextButton = By.cssSelector(".Button_Button__ra12g.Button_Middle__1CSJM");
 
     //КОНСТРУКТОР
     public OrderPage(WebDriver driver) {
@@ -46,46 +45,57 @@ public class OrderPage {
 
     //МЕТОДЫ:
 
-    //Нажатие на поле имя
-    public void nameField_click () {
-        driver.findElement(nameField).click();
+    //Нажатие на кнопку Далее
+    public void nextButtonClick() {
+        driver.findElement(nextButton).click();
     }
 
-    //Нажатие на поле фамилия
-    public void lastNameField_click () {
+    // Заполнение поля Имя
+        public void nameFieldFill(String name) {
+            wait.until(ExpectedConditions.elementToBeClickable(nameField));
+            WebElement field = driver.findElement(nameField);
+            ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", field);
+            driver.findElement(nameField).click();
+            driver.findElement(getNameField()).sendKeys(name);
+        }
+
+    // Заполнение поля Фамилия
+    public void lastNameFieldFill(String lastName) {
         driver.findElement(lastNameField).click();
+        driver.findElement(getLastNameField()).sendKeys(lastName);
     }
 
-    //Нажатие на поле адрес
-    public void addressField_click () {
+    // Заполнение поля адрес
+    public void addressFieldFill(String address) {
         driver.findElement(addressField).click();
+        driver.findElement(getAddressField()).sendKeys(address);
     }
 
     //Выбор станции (Митино)
-    public void mitinoStation_click() {
+    public void metroStationFill() {
+        driver.findElement(metroStation).click();
+        wait.until(ExpectedConditions.elementToBeClickable(mitinoStation));
         WebElement element = driver.findElement(mitinoStation);
         ((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView();", element);
         element.click();
     }
 
-    //Нажатие на поле станция
-    public void metroStation_click () {
-        driver.findElement(metroStation).click();
-    }
-
-    //Нажатие на поле телефон
-    public void phoneField_click () {
+    //Заполнение поля телефон
+    public void phoneFieldFill(String phoneNumber) {
         driver.findElement(phoneField).click();
+        driver.findElement(getPhoneField()).sendKeys(phoneNumber);
     }
 
-    //Нажатие на кнопку Далее
-    public void nextButton1_click () {
-        driver.findElement(nextButton1).click();
-    }
+    // Заполнение полей Имя, Фамилия, адрес, телефон
+    public void fillAllFields (String name,
+                               String lastName,
+                               String address,
+                               String phoneNumber) {
 
-    //Ожидание загрузки элемента для новой страницы
-    public void nameFieldCheckVisibility() {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(nameField));
+        nameFieldFill (name);
+        lastNameFieldFill(lastName);
+        addressFieldFill(address);
+        phoneFieldFill(phoneNumber);
     }
 
     public By getNameField() {

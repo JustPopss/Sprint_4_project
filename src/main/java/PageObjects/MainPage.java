@@ -1,10 +1,18 @@
 package PageObjects;
+
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 
 public class MainPage {
 
     private WebDriver driver;
+    private WebDriverWait wait;
 
     //ЛОКАТОРЫ:
 
@@ -21,17 +29,22 @@ public class MainPage {
     //КОНСТРУКТОР
     public MainPage(WebDriver driver) {
         this.driver = driver;
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
 
     //МЕТОДЫ:
 
-    //Нажатие верхней кнопки "Заказать"
-    public void orderTopButton_Click() {
+    //Верхняя кнопка Заказать: ожидание, появление, прокрутка, нажатие
+    public void orderTopButtonClick() {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(orderTopButton));
+        WebElement button = driver.findElement(orderTopButton);
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", button);
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", button);
         driver.findElement(orderTopButton).click();
     }
 
     //Нажатие нижней кнопки "Заказать"
-    public void orderBottomButton_click() {
+    public void orderBottomButtonClick() {
         driver.findElement(orderBottomButton).click();
     }
 
