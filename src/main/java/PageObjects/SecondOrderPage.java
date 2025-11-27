@@ -2,6 +2,7 @@ package PageObjects;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -9,6 +10,7 @@ import java.time.Duration;
 
 public class SecondOrderPage {
 
+    public WebElement modal;
     private WebDriver driver;
     private WebDriverWait wait;
 
@@ -77,6 +79,8 @@ public class SecondOrderPage {
 
     public void checkOrderSuccessModal() {
         wait.until(ExpectedConditions.visibilityOfElementLocated(finalWindow));
+        WebElement modal = driver.findElement(getFinalWindow());
+
     }
 
     //Ожидание загрузки всплывающего окна
@@ -93,4 +97,7 @@ public class SecondOrderPage {
     public By getFinalWindow() {
         return finalWindow;
     }
+
+
+
 }

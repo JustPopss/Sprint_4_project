@@ -8,7 +8,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -109,11 +108,9 @@ import static org.junit.Assert.assertTrue;
 
         //Проверка окна Заказ сделан
         secondOrderPage.checkOrderSuccessModal();
-        WebElement modal = driver.findElement(secondOrderPage.getFinalWindow());
-        assertTrue("Окно подтверждения заказа не отобразилось!", modal.isDisplayed());
-        String modalText = modal.getText();
+        assertTrue("Окно подтверждения заказа не отобразилось!", secondOrderPage.modal.isDisplayed());
+        String modalText = secondOrderPage.modal.getText();
         assertTrue("Текст окна не содержит 'Заказ оформлен'!", modalText.contains("Заказ оформлен"));
-
         System.out.println("✅ Заказ успешно оформлен! Текст: " + modalText);
     }
 
