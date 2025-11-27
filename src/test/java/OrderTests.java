@@ -1,7 +1,7 @@
-import PageObjects.MainPage;
-import PageObjects.OrderPage;
-import PageObjects.SecondOrderPage;
-import PageObjects.Utility;
+import Pageobjects.MainPage;
+import Pageobjects.OrderPage;
+import Pageobjects.SecondOrderPage;
+import Pageobjects.Utility;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;

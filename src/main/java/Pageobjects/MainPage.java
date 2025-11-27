@@ -1,4 +1,4 @@
-package PageObjects;
+package Pageobjects;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -24,6 +24,7 @@ public class MainPage {
 
     //Кнопка нижняя "Заказать"
     private By orderBottomButton = By.cssSelector(".Button_Button__ra12g.Button_Middle__1CSJM");
+
 
 
     //КОНСТРУКТОР

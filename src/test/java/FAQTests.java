@@ -1,5 +1,5 @@
-import PageObjects.FAQelements;
-import PageObjects.Utility;
+import Pageobjects.FAQelements;
+import Pageobjects.Utility;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
