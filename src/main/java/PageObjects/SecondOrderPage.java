@@ -11,7 +11,6 @@ public class SecondOrderPage {
 
     private WebDriver driver;
     private WebDriverWait wait;
-    private OrderPage orderPage;
 
     //Локаторы второй страницы заказа
 
